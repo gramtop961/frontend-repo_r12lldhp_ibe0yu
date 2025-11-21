@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { Menu, X, Shield, Bot } from 'lucide-react'
+import { Menu, X, Shield, Database } from 'lucide-react'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   const navItems = [
     { label: 'Solutions', href: '#solutions' },
-    { label: 'Business', href: '#business' },
+    { label: 'Platform', href: '#platform' },
     { label: 'Government', href: '#government' },
     { label: 'Pricing', href: '#pricing' },
   ]
@@ -16,11 +16,11 @@ export default function Navbar() {
       <nav className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
         <a href="/" className="flex items-center gap-2">
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 via-blue-500 to-orange-400 text-white shadow-lg shadow-purple-500/30">
-            <Bot size={20} />
+            <Database size={20} />
           </span>
           <div className="flex flex-col leading-tight">
-            <span className="text-white font-semibold text-lg">AuraAI</span>
-            <span className="text-xs text-white/60">Voice Agent Platform</span>
+            <span className="text-white font-semibold text-lg">AuraData</span>
+            <span className="text-xs text-white/60">Decision Intelligence</span>
           </div>
         </a>
 

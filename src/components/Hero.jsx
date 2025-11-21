@@ -17,14 +17,14 @@ export default function Hero() {
             Trusted by business and government teams
           </div>
           <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight text-white">
-            AI voice agent guidance for business and government
+            Data-driven management and decision intelligence
           </h1>
           <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl">
-            Launch secure, compliant AI voice experiences in days—not months. Strategy, design, and deployment support built for high‑stakes environments.
+            Integrate, govern, and operationalize your data to drive confident decisions at scale. Strategy, platforms, and execution—built for high‑stakes environments.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <a href="#get-started" className="inline-flex items-center justify-center rounded-lg bg-white text-slate-900 px-5 py-3 font-semibold shadow-lg shadow-purple-500/20">
-              Book a demo
+              Request a demo
             </a>
             <a href="#solutions" className="inline-flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white px-5 py-3 font-semibold">
               Explore solutions
