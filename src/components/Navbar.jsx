@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Menu, X, Shield, Database } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -14,10 +15,14 @@ export default function Navbar() {
   return (
     <header className="relative z-20">
       <nav className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 via-blue-500 to-orange-400 text-white shadow-lg shadow-purple-500/30">
+        <a href="/" className="flex items-center gap-2 group">
+          <motion.span
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 via-blue-500 to-orange-400 text-white shadow-lg shadow-purple-500/30"
+            whileHover={{ rotate: 8 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <Database size={20} />
-          </span>
+          </motion.span>
           <div className="flex flex-col leading-tight">
             <span className="text-white font-semibold text-lg">AuraData</span>
             <span className="text-xs text-white/60">Decision Intelligence</span>
@@ -26,14 +31,14 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <a key={item.label} href={item.href} className="text-white/80 hover:text-white transition-colors">
+            <motion.a key={item.label} href={item.href} className="text-white/80 hover:text-white transition-colors" whileHover={{ y: -2 }}>
               {item.label}
-            </a>
+            </motion.a>
           ))}
-          <a href="#get-started" className="inline-flex items-center gap-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 py-2 transition-colors">
+          <motion.a href="#get-started" className="inline-flex items-center gap-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 py-2 transition-colors" whileTap={{ scale: 0.98 }}>
             <Shield size={16} />
             Get Started
-          </a>
+          </motion.a>
         </div>
 
         <button
@@ -45,18 +50,27 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {open && (
-        <div className="md:hidden mx-3 rounded-xl bg-slate-900/80 backdrop-blur border border-white/10 p-4 space-y-3">
-          {navItems.map((item) => (
-            <a key={item.label} href={item.href} className="block text-white/90 hover:text-white">
-              {item.label}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden mx-3 rounded-xl bg-slate-900/80 backdrop-blur border border-white/10 p-4 space-y-3"
+          >
+            {navItems.map((item) => (
+              <a key={item.label} href={item.href} className="block text-white/90 hover:text-white">
+                {item.label}
+              </a>
+            ))}
+            <a href="#get-started" className="block text-center rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 py-2">
+              Get Started
             </a>
-          ))}
-          <a href="#get-started" className="block text-center rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 py-2">
-            Get Started
-          </a>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
