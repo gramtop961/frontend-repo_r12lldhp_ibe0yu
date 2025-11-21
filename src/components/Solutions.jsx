@@ -53,10 +53,18 @@ export default function Solutions() {
           {cards.map(({ icon: Icon, title, desc }) => (
             <motion.div
               key={title}
-              className="group rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur"
+              className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur"
               variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
               whileHover={{ y: -6, boxShadow: '0 10px 30px rgba(99,102,241,0.15)' }}
               transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+              onMouseMove={(e) => {
+                const target = e.currentTarget;
+                const rect = target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                target.style.setProperty('--x', `${x}px`);
+                target.style.setProperty('--y', `${y}px`);
+              }}
             >
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-white">
                 <Icon size={18} />
@@ -73,12 +81,6 @@ export default function Solutions() {
                 whileHover={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
                 style={{ background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(147,51,234,0.08), transparent 40%)' }}
-                onMouseMove={(e) => {
-                  const target = e.currentTarget as HTMLDivElement
-                  const rect = target.getBoundingClientRect()
-                  target.style.setProperty('--x', `${e.clientX - rect.left}px`)
-                  target.style.setProperty('--y', `${e.clientY - rect.top}px`)
-                }}
               />
             </motion.div>
           ))}
